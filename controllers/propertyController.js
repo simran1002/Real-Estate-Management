@@ -1,67 +1,64 @@
-const { Property, Locality } = require('../models');
+const propertyModel = require('../models/propertyModel');
 
+// Controller to handle adding a new property
 const addNewProperty = async (req, res) => {
-  const { property_name, locality, owner_name } = req.body;
-  try {
-    const localityInstance = await Locality.findOrCreate({ where: { name: locality } });
-    const property = await Property.create({
-      name: property_name,
-      owner_name,
-      localityId: localityInstance[0].id
-    });
-    res.status(201).json({ message: 'Property added', property_id: property.id });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
+    const { property_name, locality, owner_name } = req.body;
+    try {
+        const locality_id = await propertyModel.getLocalityIdByName(locality);
+        if (!locality_id) {
+            return res.status(404).json({ error: 'Locality not found' });
+        }
+        const property_id = await propertyModel.addNewProperty(property_name, locality_id, owner_name);
+        res.status(201).json({ message: 'Property added successfully', property_id });
+    } catch (err) {
+        console.error('Error adding property:', err);
+        res.status(500).json({ error: 'Failed to add property' });
+    }
 };
 
+// Controller to handle fetching all properties by locality
 const fetchAllProperties = async (req, res) => {
-  const { locality_name, locality_id } = req.query;
-  try {
-    const whereClause = locality_name ? { name: locality_name } : { id: locality_id };
-    const locality = await Locality.findOne({ where: whereClause, include: Property });
-    if (!locality) {
-      return res.status(404).json({ message: 'Locality not found' });
+    const { locality_name } = req.query;
+    try {
+        const locality_id = await propertyModel.getLocalityIdByName(locality_name);
+        if (!locality_id) {
+            return res.status(404).json({ error: 'Locality not found' });
+        }
+        const properties = await propertyModel.fetchAllProperties(locality_id);
+        res.status(200).json(properties);
+    } catch (err) {
+        console.error('Error fetching properties:', err);
+        res.status(500).json({ error: 'Failed to fetch properties' });
     }
-    res.status(200).json(locality.Properties);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
 };
 
+// Controller to handle updating property details
 const updatePropertyDetails = async (req, res) => {
-  const { property_id, locality_id, owner_name } = req.body;
-  try {
-    const property = await Property.findByPk(property_id);
-    if (!property) {
-      return res.status(404).json({ message: 'Property not found' });
+    const { property_id, locality_id, owner_name } = req.body;
+    try {
+        await propertyModel.updatePropertyDetails(property_id, locality_id, owner_name);
+        res.status(200).json({ message: 'Property details updated successfully' });
+    } catch (err) {
+        console.error('Error updating property details:', err);
+        res.status(500).json({ error: 'Failed to update property details' });
     }
-    property.localityId = locality_id;
-    property.owner_name = owner_name;
-    await property.save();
-    res.status(200).json({ message: 'Property updated', property });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
 };
 
+// Controller to handle deleting a property
 const deletePropertyRecord = async (req, res) => {
-  const { property_id } = req.body;
-  try {
-    const property = await Property.findByPk(property_id);
-    if (!property) {
-      return res.status(404).json({ message: 'Property not found' });
+    const { property_id } = req.params;
+    try {
+        await propertyModel.deletePropertyRecord(property_id);
+        res.status(200).json({ message: 'Property deleted successfully' });
+    } catch (err) {
+        console.error('Error deleting property:', err);
+        res.status(500).json({ error: 'Failed to delete property' });
     }
-    await property.destroy();
-    res.status(200).json({ message: 'Property deleted' });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
 };
 
 module.exports = {
-  addNewProperty,
-  fetchAllProperties,
-  updatePropertyDetails,
-  deletePropertyRecord
+    addNewProperty,
+    fetchAllProperties,
+    updatePropertyDetails,
+    deletePropertyRecord
 };
