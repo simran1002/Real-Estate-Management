@@ -1,0 +1,522 @@
+{
+	"info": {
+		"_postman_id": "b3c50182-094a-4a8b-b187-dedab3a8dbd4",
+		"name": "Real-Estate-Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24106690"
+	},
+	"item": [
+		{
+			"name": "Add new property API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"property_name\": \"2 BHK Flat\",\r\n    \"locality\": \"Wave City\",\r\n    \"owner_name\": \"Simran Yadav\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/properties/add_new_property",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"properties",
+						"add_new_property"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"property_name\": \"2 BHK Flat\",\r\n    \"locality\": \"Wave City\",\r\n    \"owner_name\": \"Simran Yadav\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/properties/add_new_property",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"properties",
+								"add_new_property"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "17"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"11-9wr5GQBUDEYzUdrM9qWVbRRDWXA\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 05 Jul 2024 08:42:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"property_id\": 9\n}"
+				}
+			]
+		},
+		{
+			"name": "Fetch all property of particular locality API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/properties/fetch_all_properties?locality_name=Golflinks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"properties",
+						"fetch_all_properties"
+					],
+					"query": [
+						{
+							"key": "locality_name",
+							"value": "Golflinks"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Fetch all property API",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/properties/fetch_all_properties?locality_name=Golflinks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"properties",
+								"fetch_all_properties"
+							],
+							"query": [
+								{
+									"key": "locality_name",
+									"value": "Golflinks"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "77"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4d-0URrCHS6JB9w5HnLZbyyYLzdPd8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 05 Jul 2024 08:38:57 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"property_id\": 6,\n        \"property_name\": \"3 BHK Flat\",\n        \"owner_name\": \"Kanan Agarwal\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Update property details API",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"property_id\": 1,\r\n    \"locality_id\": 1,\r\n    \"owner_name\": \"Simran Yadav\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/properties/update_property_details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"properties",
+						"update_property_details"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"property_id\": 1,\r\n    \"locality_id\": 1,\r\n    \"owner_name\": \"Jane Doe\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/properties/update_property_details",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"properties",
+								"update_property_details"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "51"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"33-E4uag77cgeksGzea5yO1VfBRQ2U\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 Jul 2024 20:24:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Property details updated successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete the property API",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/properties/delete_property_record/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"properties",
+						"delete_property_record",
+						"7"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/properties/delete_property_record/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"properties",
+								"delete_property_record",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2b-WUXG3hDswcOz0eicQl9L784wbfs\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 Jul 2024 20:24:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Property deleted successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Fetch all localities API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/properties/fetch_all_localities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"properties",
+						"fetch_all_localities"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/properties/fetch_all_localities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"properties",
+								"fetch_all_localities"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "239"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ef-ePSxQAXBvJPcRnRP0SKE1dTTURM\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 05 Jul 2024 08:40:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"locality_id\": 1,\n        \"locality_name\": \"Sample Locality\"\n    },\n    {\n        \"locality_id\": 2,\n        \"locality_name\": \"Mahagun Puram\"\n    },\n    {\n        \"locality_id\": 3,\n        \"locality_name\": \"Wave City\"\n    },\n    {\n        \"locality_id\": 4,\n        \"locality_name\": \"Golflinks\"\n    },\n    {\n        \"locality_id\": 5,\n        \"locality_name\": \"Jasmine\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Fetch all property API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/properties/fetch_all_properties",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"properties",
+						"fetch_all_properties"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/properties/fetch_all_properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"properties",
+								"fetch_all_properties"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "456"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1c8-DSk7SiU9IOmslqQ/DSN1dgWAi7c\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 05 Jul 2024 08:43:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"property_id\": 2,\n        \"property_name\": \"2+1 BHK Flat\",\n        \"owner_name\": \"Simran Yadav\"\n    },\n    {\n        \"property_id\": 3,\n        \"property_name\": \"2+1 BHK Flat\",\n        \"owner_name\": \"Simran Yadav\"\n    },\n    {\n        \"property_id\": 4,\n        \"property_name\": \"2 BHK Flat\",\n        \"owner_name\": \"Shreya Singh\"\n    },\n    {\n        \"property_id\": 5,\n        \"property_name\": \"2 BHK Flat\",\n        \"owner_name\": \"Shalini Rani\"\n    },\n    {\n        \"property_id\": 6,\n        \"property_name\": \"3 BHK Flat\",\n        \"owner_name\": \"Kanan Agarwal\"\n    },\n    {\n        \"property_id\": 9,\n        \"property_name\": \"2 BHK Flat\",\n        \"owner_name\": \"Simran Yadav\"\n    }\n]"
+				}
+			]
+		}
+	]
+}
